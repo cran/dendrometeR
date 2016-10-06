@@ -62,8 +62,8 @@ climate_seg <- function(env.data, dm.stats, value = c("mean", "min", "max", "sum
 
   cycleStats <- dm.stats[[1]]
   dm.stats123 <- cycleStats[which(cycleStats$phase == 1 | cycleStats$phase == 2 | cycleStats$phase == 3),]
-  climPhase123 <- data.frame(dm.stats123[,1:5], ph123[ph123$cycle>0,-c(1:2)])
-  climPhase4 <- data.frame(cycleStats[which(cycleStats$phase == 4),1:5], ph4[ph4$cycle>0,-c(1:2)])
+  climPhase123 <- data.frame(dm.stats123[,1:5], ph123[ph123$cycle>0,-c(1:2), drop=FALSE])
+  climPhase4 <- data.frame(cycleStats[which(cycleStats$phase == 4),1:5], ph4[ph4$cycle>0,-c(1:2), drop=FALSE])
 
   climPhase <- rbind(climPhase123, climPhase4)
   climPhase <- climPhase[order(climPhase$cycle, climPhase$phase),]
