@@ -143,7 +143,8 @@ cycle_stats <- function(dm.gpf, dm.phase, sensor = 1, smooth.param = 1)
 
   cycle.df <- data.frame(dmID = rep(names(dm.gpj)[2], length(cycle)),
                          cycle = cycle, phase = phase)
-  rownames(cycle.df) <- date
+  rownames(cycle.df) <- strftime(date, '%Y-%m-%d %H:%M:%S')
+
   output <- list(cycleStats = dm.stats, cycle.df = cycle.df)
   return(output)
 }

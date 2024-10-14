@@ -4,7 +4,9 @@
 \name{dmCDraw}
 \alias{dmCDraw}
 \title{Raw dendrometer data from Camp Daniel, Canada}
-\format{A \code{data.frame} with a dendrometer series and various time variables.}
+\format{
+A \code{data.frame} with a dendrometer series and various time variables.
+}
 \source{
 Sergio Rossi
 }
@@ -15,4 +17,3 @@ data(dmCDraw)
 This dataset presents hourly dendrometer series for a black spruce (\emph{Picea mariana} (Mill.) BSP) tree from Camp Daniel, Canada, for the year 2008.
 }
 \keyword{datasets}
-

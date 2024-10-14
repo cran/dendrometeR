@@ -25,4 +25,3 @@ is.dendro(dmED)
 \author{
 Ernst van der Maaten, Marieke van der Maaten-Theunissen and Marko Smiljanic.
 }
-

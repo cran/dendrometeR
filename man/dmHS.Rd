@@ -4,7 +4,9 @@
 \name{dmHS}
 \alias{dmHS}
 \title{Pre-processed dendrometer data from Hinnensee, Germany}
-\format{A \code{data.frame} with a timestamp (\code{\%Y-\%m-\%d \%H:\%M:\%S} format) as row names, and the dendrometer series in the first column.}
+\format{
+A \code{data.frame} with a timestamp (\code{\%Y-\%m-\%d \%H:\%M:\%S} format) as row names, and the dendrometer series in the first column.
+}
 \usage{
 data(dmHS)
 }
@@ -12,4 +14,3 @@ data(dmHS)
 This dataset presents a pre-processed version of \code{\link{dmHSraw}}, using code provided in the \code{Import dendrometer data} vignette.
 }
 \keyword{datasets}
-

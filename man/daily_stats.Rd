@@ -53,4 +53,3 @@ dm.daily <- daily_stats(dmED, sensor = "ALL", value = "max")
 \author{
 Olivier Bouriaud, Ernst van der Maaten and Marieke van der Maaten-Theunissen.
 }
-

@@ -4,7 +4,9 @@
 \name{dmHSraw}
 \alias{dmHSraw}
 \title{Raw dendrometer data from Hinnensee, Germany}
-\format{A \code{data.frame} with a dendrometer series and various time variables.}
+\format{
+A \code{data.frame} with a dendrometer series and various time variables.
+}
 \source{
 Sonia Simard
 }
@@ -15,4 +17,3 @@ data(dmHSraw)
 This dataset presents half-hourly dendrometer series for a European beech (\emph{Fagus sylvatica} L.) tree from the monitoring plot Hinnensee, Germany, for the year 2012.
 }
 \keyword{datasets}
-

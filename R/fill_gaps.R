@@ -6,9 +6,9 @@
 #'
 #' @param dm.data a \code{data.frame} with a timestamp (\code{\%Y-\%m-\%d \%H:\%M:\%S} format) as row names, and dendrometer series in columns. Output as created using code from the \code{Import dendrometer data} vignette.
 #' @param Hz a \code{numeric} specifying the parameter for smoothing with ARMA gap-filling. A higher value means rougher smoothing. Defaults to 0.01.
-#' @param season a \code{logical} indicating whether \code{\link{auto.arima}} should check seasonal models; can be very slow. Defaults to FALSE, i.e. search restricted to non-seasonal models.
+#' @param season a \code{logical} indicating whether \code{\link[forecast]{auto.arima}} should check seasonal models; can be very slow. Defaults to FALSE, i.e. search restricted to non-seasonal models.
 #'
-#' @details The function uses \code{\link{auto.arima}} to fill missing records. The non-seasonal part of the model is specified by the three integer components: the AR order \emph{p}, the degree of differencing \emph{d}, and the MA order \emph{q}. For the seasonal part of the model, the period parameter is set equal to the number of daily measurements observed in the dendrometer data. The output of the ARMA model is smoothed using \code{\link{smooth.Pspline}}. The smoothing parameter Hz can be adjusted; defaults to 0.01.
+#' @details The function uses \code{\link[forecast]{auto.arima}} to fill missing records. The non-seasonal part of the model is specified by the three integer components: the AR order \emph{p}, the degree of differencing \emph{d}, and the MA order \emph{q}. For the seasonal part of the model, the period parameter is set equal to the number of daily measurements observed in the dendrometer data. The output of the ARMA model is smoothed using \code{\link[pspline]{smooth.Pspline}}. The smoothing parameter Hz can be adjusted; defaults to 0.01.
 #'
 #' The function is designed for single growing seasons, amongst others because ARMA-based gap-filling routines will then perform best (i.e. ARMA parameters might be distinct for individual growing seasons). To allow the usage of \code{\link{fill_gaps}} for datasets from the Southern Hemisphere, the input data may contain two consecutive calendar years.
 #'
@@ -19,11 +19,12 @@
 #' @references Deslauriers, A., Rossi, S., Turcotte, A., Morin, H. and Krause, C. (2011) A three-step procedure in SAS to analyze the time series from automatic dendrometers. \emph{Dendrochronologia} 29: 151-161.
 #'
 #' @examples
-#' \dontrun{
 #'
 #' data(dmCD)
-#' ## creating some artificial gaps (for demonstration purposes):
+#'
+#' # creating some artificial gaps (for demonstration purposes):
 #' dmCD[c(873:877,985:990),1] <- NA
+#' \donttest{
 #' # slow, as also seasonal models are checked, but best possible gap-filling:
 #' dm.gpf <- fill_gaps(dmCD, Hz = 0.01, season = TRUE)
 #' }

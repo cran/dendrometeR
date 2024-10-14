@@ -4,7 +4,9 @@
 \name{dmED}
 \alias{dmED}
 \title{Pre-processed dendrometer data from Eldena, Germany}
-\format{A \code{data.frame} with a timestamp (\code{\%Y-\%m-\%d \%H:\%M:\%S} format) as row names, and the two dendrometer series in the first and second column.}
+\format{
+A \code{data.frame} with a timestamp (\code{\%Y-\%m-\%d \%H:\%M:\%S} format) as row names, and the two dendrometer series in the first and second column.
+}
 \usage{
 data(dmED)
 }
@@ -12,4 +14,3 @@ data(dmED)
 This dataset presents a pre-processed version of \code{\link{dmEDraw}}, using code provided in the \code{Import dendrometer data} vignette.
 }
 \keyword{datasets}
-

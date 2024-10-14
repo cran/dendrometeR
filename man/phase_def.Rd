@@ -13,9 +13,9 @@ phase_def(dm.gpf, resolution = dendro.resolution(dm.gpf),
 
 \item{resolution}{a \code{numeric} specifying the resolution of the dendrometer data in seconds. Defaults to the resolution of \code{dm.gpf} as calculated using \code{\link{dendro.resolution}}.}
 
-\item{shapeSensitivity}{a \code{numeric} specifying a time window, defined as proportion of a single day. Within this time window possible extrema points (i.e. minimum and maximum) in dendrometer measurements are searched for. Defaults to 0.6 (60\% of a day). See details for further explanation.}
+\item{shapeSensitivity}{a \code{numeric} specifying a time window, defined as proportion of a single day. Within this time window possible extrema points (i.e. minimum and maximum) in dendrometer measurements are searched for. Defaults to 0.6 (60 percent of a day). See details for further explanation.}
 
-\item{minmaxDist}{a \code{numeric} specifying the minimum temporal distance between consecutive minimum and maximum points (i.e. in the x direction). Defaults to 0.2 (20\% of a day).}
+\item{minmaxDist}{a \code{numeric} specifying the minimum temporal distance between consecutive minimum and maximum points (i.e. in the x direction). Defaults to 0.2 (20 percent of a day).}
 
 \item{minmaxSD}{a \code{numeric} specifying the minimum difference between consecutive minimum and maximum points expressed as a number of standard deviations (i.e. in the y direction). Defaults to 2.}
 
@@ -39,10 +39,9 @@ data(dmCD)
 dm.phase <- phase_def(dmCD)
 
 }
-\author{
-Marko Smiljanic
-}
 \references{
 Deslauriers, A., Rossi, S., Turcotte, A., Morin, H. and Krause, C. (2011) A three-step procedure in SAS to analyze the time series from automatic dendrometers. \emph{Dendrochronologia} 29: 151-161.
 }
-
+\author{
+Marko Smiljanic
+}

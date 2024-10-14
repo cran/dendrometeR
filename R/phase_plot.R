@@ -34,9 +34,9 @@
 #'            colPhases = c("green", "cyan", "orange"),
 #'            pch = 4, main = "Dendrometer", ylab = "Values")
 #'
-#' \dontrun{
-#'
 #' # specific sensors may be selected as follows:
+#'
+#' \donttest{
 #' data(dmED)
 #' dm.gpf <- fill_gaps(dmED)
 #' dm.phase <- phase_def(dm.gpf)
@@ -51,8 +51,10 @@
 #'
 #' @export phase_plot
 #'
-phase_plot <- function(dm.gpf, dm.phase, sensor = NULL, period = NULL, colPhases = NULL, ...)
+phase_plot <- function(dm.gpf, dm.phase = phase_def(dm.gpf), sensor = NULL, period = NULL, colPhases = NULL, ...)
 {
+  old_options <- options()
+  on.exit(options(old_options))
   nm1 <- deparse(substitute(dm.gpf))
   nm2 <- deparse(substitute(dm.phase))
 
@@ -140,17 +142,21 @@ phase_plot <- function(dm.gpf, dm.phase, sensor = NULL, period = NULL, colPhases
     plotArgs$las <- 1
   }
 
-  if(class(dm.gpf) == "numeric") {
-    plotArgs$x <- c(1, length(dm.gpf))
-    plotArgs$y <- c(min(dm.gpf, na.rm = TRUE), max(dm.gpf, na.rm = TRUE))
-  }
-  else if(class(dm.gpf) == "data.frame" || class(dm.gpf) == "matrix") {
+
+  # @Note explicit test if dm.gpf is a data.frame (uncomment in case of is.dendro conditions change)
+
+  # if(class(dm.gpf) == "data.frame" || class(dm.gpf) == "matrix") {
     plotArgs$x <- c(1, nrow(dm.gpf))
     plotArgs$y <- c(min(dm.gpf[1:length(dm.gpf)], na.rm = TRUE), max(dm.gpf[1:length(dm.gpf)], na.rm = TRUE))
-  }
-  else {
-    stop(paste("'", nm1, "' must be either a numeric or data.frame", sep = ""))
-  }
+  # }
+  # else if(is.numeric(dm.gpf)) {
+  #   plotArgs$x <- c(1, length(dm.gpf))
+  #   plotArgs$y <- c(min(dm.gpf, na.rm = TRUE), max(dm.gpf, na.rm = TRUE))
+  # }
+  # else {
+  #   stop(paste("'", nm1, "' must be either a numeric or data.frame", sep = ""))
+  # }
+
   if(is.null(plotArgs$ylab)) {
     plotArgs$ylab <- "Stem-size variation"
   }
@@ -169,14 +175,8 @@ phase_plot <- function(dm.gpf, dm.phase, sensor = NULL, period = NULL, colPhases
     do.call(points, pointArgs)
   }
 
-  if(class(dm.gpf) == "numeric") {
-    if(length(dm.gpf) != length(dm.phase)) {
-      stop(paste("'", nm1, "' and '", nm2, "' must be of the same length", sep = ""))
-    }
-    lines(dm.gpf, ...)
-    plotPhase()
-  }
-  else if(class(dm.gpf) == "data.frame" || class(dm.gpf) == "matrix") {
+  # @Note explicit test if dm.gpf is a data.frame (uncomment in case of is.dendro conditions change)
+  #  if(class(dm.gpf) == "data.frame" || class(dm.gpf) == "matrix") {
     dm.gpf <- as.data.frame(dm.gpf)
     if(nrow(dm.gpf) != nrow(dm.phase) || ncol(dm.gpf) != ncol(dm.phase)) {
       stop(paste("the dimensions of '", nm1, "' and '", nm2, "' must be the same", sep = ""))
@@ -193,7 +193,15 @@ phase_plot <- function(dm.gpf, dm.phase, sensor = NULL, period = NULL, colPhases
       do.call(lines,lineArgs)
       plotPhase(dend, phas)
     }
-  }
+  # } else if(is.numeric(dm.gpf)) {
+  #   #  if(class(dm.gpf) == "numeric") {
+  #   if(length(dm.gpf) != length(dm.phase)) {
+  #     stop(paste("'", nm1, "' and '", nm2, "' must be of the same length", sep = ""))
+  #   }
+  #   lines(dm.gpf, ...)
+  #   plotPhase()
+  # }
+
 
   t <- axis(1, labels = FALSE)
 

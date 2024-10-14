@@ -22,8 +22,7 @@
 #' \item{...}{columns with segmented environmental data (mean, min, max or sum).}
 #'
 #' @examples
-#' \dontrun{
-#'
+#' \donttest{
 #' data(dmED)
 #' dm.gpf <- fill_gaps(dmED)
 #' dm.phase <- phase_def(dm.gpf)

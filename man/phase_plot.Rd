@@ -43,9 +43,9 @@ phase_plot(dmCD, dm.phase, period = c("2008-05-12", "2008-05-22"),
            colPhases = c("green", "cyan", "orange"),
            pch = 4, main = "Dendrometer", ylab = "Values")
 
-\dontrun{
-
 # specific sensors may be selected as follows:
+
+\donttest{
 data(dmED)
 dm.gpf <- fill_gaps(dmED)
 dm.phase <- phase_def(dm.gpf)
@@ -56,10 +56,9 @@ phase_plot(dm.gpf, dm.phase, sensor = c("Beech03", "Beech04"))
 }
 
 }
-\author{
-Marko Smiljanic
-}
 \references{
 Deslauriers, A., Rossi, S., Turcotte, A., Morin, H. and Krause, C. (2011) A three-step procedure in SAS to analyze the time series from automatic dendrometers. \emph{Dendrochronologia} 29: 151-161.
 }
-
+\author{
+Marko Smiljanic
+}

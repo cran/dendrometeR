@@ -4,7 +4,9 @@
 \name{dmEDraw}
 \alias{dmEDraw}
 \title{Raw dendrometer data from Eldena, Germany}
-\format{A \code{data.frame} with dendrometer series and a timestamp.}
+\format{
+A \code{data.frame} with dendrometer series and a timestamp.
+}
 \source{
 Martin Wilmking
 }
@@ -15,4 +17,3 @@ data(dmEDraw)
 This dataset presents half-hourly dendrometer series for two European beech (\emph{Fagus sylvatica} L.) trees from the monitoring plot Eldena, Germany, for the year 2015.
 }
 \keyword{datasets}
-

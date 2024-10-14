@@ -51,4 +51,3 @@ dm.stats <- cycle_stats(dmCD, dm.phase)
 \author{
 Olivier Bouriaud, Ernst van der Maaten and Marieke van der Maaten-Theunissen.
 }
-

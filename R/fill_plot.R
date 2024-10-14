@@ -18,7 +18,7 @@
 #' @author Olivier Bouriaud, Ernst van der Maaten and Marieke van der Maaten-Theunissen.
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #'
 #' data(dmCD)
 #' ## creating some artificial gaps (for demonstration purposes):

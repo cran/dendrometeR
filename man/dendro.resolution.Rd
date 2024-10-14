@@ -27,4 +27,3 @@ dendro.resolution(dmED, unts = "mins")
 \author{
 Marko Smiljanic
 }
-

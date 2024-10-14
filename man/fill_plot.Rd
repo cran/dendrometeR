@@ -28,7 +28,7 @@ The function creates a plot with gap-filled and original dendrometer series.
 The function creates a plot showing the gap-filling results for a single dendrometer series over a specified time window. Although the function is intended to plot short time periods (within a growing season), it can plot two calendar years at maximum (e.g., 2014-2015), thereby allowing the visualization of a complete growing season at the Southern Hemisphere as well.
 }
 \examples{
-\dontrun{
+\donttest{
 
 data(dmCD)
 ## creating some artificial gaps (for demonstration purposes):
@@ -41,4 +41,3 @@ fill_plot(dmCD, dm.gpf, period = c(137,144))
 \author{
 Olivier Bouriaud, Ernst van der Maaten and Marieke van der Maaten-Theunissen.
 }
-

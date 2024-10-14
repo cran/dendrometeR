@@ -52,53 +52,7 @@ daily_stats <- function(dm.data, sensor = 1, value = c("mean", "min", "max", "su
     stop(paste("'", nm, "' is not in the required format", sep = ""))
   }
 
-  if(class(sensor) == "numeric") {
-    if(ncol(dm.data) == 1 && sensor > ncol(dm.data)) {
-      stop("'sensor' should be 1")
-    }
-    if(ncol(dm.data) > 1 && sensor > ncol(dm.data)) {
-      stop(paste("'sensor' should be between", 1, "and", ncol(dm.data), sep = " "))
-    }
-
-    # Optional smoothing
-    if(smooth.param > 1) {
-      dm.data[, sensor] <- ave(dm.data[, sensor],
-                              FUN = function(x) rollmean(x, smooth.param, align = "right", fill = NA, na.rm = TRUE))
-    }
-
-    date <- strftime(rownames(dm.data), format = "%Y-%m-%d")
-    DOY <- as.numeric(strftime(rownames(dm.data), format = "%j"))
-    dmin <- aggregate(dm.data[,sensor], list(DOY, DOY), FUN = min)$x
-    dmean <- aggregate(dm.data[,sensor], list(DOY, DOY), FUN = mean)$x
-    dmax <- aggregate(dm.data[,sensor], list(DOY, DOY), FUN = max)$x
-    amplitude <- dmax - dmin
-
-    dm.data$DOY <- DOY
-    sort.min <- dm.data[order(dm.data$DOY, dm.data[,sensor]),]
-    sort.min <- sort.min[!duplicated(sort.min$DOY),]
-    time_min <- row.names(sort.min)
-    sort.max <- dm.data[order(dm.data$DOY, -dm.data[,sensor]),]
-    sort.max <- sort.max[!duplicated(sort.max$DOY),]
-    time_max <- row.names(sort.max)
-
-    dmDaily <- data.frame(dmID = rep(names(dm.data)[sensor], length(unique(DOY))),
-                           date = unique(date),
-                           DOY = unique(DOY),
-                           min = dmin,
-                           mean = dmean,
-                           max = dmax,
-                           amplitude = amplitude,
-                           time_min = time_min,
-                           time_max = time_max)
-
-    dmDaily$time_min[is.na(dmDaily$min)] <- NA
-    dmDaily$time_max[is.na(dmDaily$min)] <- NA
-  }
-
-  if(class(sensor) != "numeric") {
-    if(sensor != "ALL") {
-      stop(paste("the entry for 'sensor' is incorrect. Either specify a sensor number or type ", dQuote("ALL"),".", sep = ""))
-    }
+  if(sensor == "ALL") {
 
     date <- strftime(rownames(dm.data), format = "%Y-%m-%d")
     DOY <- as.numeric(strftime(rownames(dm.data), format = "%j"))
@@ -110,7 +64,51 @@ daily_stats <- function(dm.data, sensor = 1, value = c("mean", "min", "max", "su
     dmDaily <- data.frame(dmvalue[,-c(1:2)])
     names(dmDaily) <- colnames(dm.data)
     rownames(dmDaily) <- unique(date)
+    return(dmDaily)
   }
+
+  stopifnot('sensor must be either numeric or \'ALL\'' = is.numeric(sensor))
+
+  if(ncol(dm.data) == 1 && sensor > ncol(dm.data)) {
+    stop("'sensor' should be 1")
+  }
+  if(ncol(dm.data) > 1 && sensor > ncol(dm.data)) {
+    stop(paste("'sensor' should be between", 1, "and", ncol(dm.data), sep = " "))
+  }
+
+  # Optional smoothing
+  if(smooth.param > 1) {
+    dm.data[, sensor] <- ave(dm.data[, sensor],
+                             FUN = function(x) rollmean(x, smooth.param, align = "right", fill = NA, na.rm = TRUE))
+  }
+
+  date <- strftime(rownames(dm.data), format = "%Y-%m-%d")
+  DOY <- as.numeric(strftime(rownames(dm.data), format = "%j"))
+  dmin <- aggregate(dm.data[,sensor], list(DOY, DOY), FUN = min)$x
+  dmean <- aggregate(dm.data[,sensor], list(DOY, DOY), FUN = mean)$x
+  dmax <- aggregate(dm.data[,sensor], list(DOY, DOY), FUN = max)$x
+  amplitude <- dmax - dmin
+
+  dm.data$DOY <- DOY
+  sort.min <- dm.data[order(dm.data$DOY, dm.data[,sensor]),]
+  sort.min <- sort.min[!duplicated(sort.min$DOY),]
+  time_min <- row.names(sort.min)
+  sort.max <- dm.data[order(dm.data$DOY, -dm.data[,sensor]),]
+  sort.max <- sort.max[!duplicated(sort.max$DOY),]
+  time_max <- row.names(sort.max)
+
+  dmDaily <- data.frame(dmID = rep(names(dm.data)[sensor], length(unique(DOY))),
+                        date = unique(date),
+                        DOY = unique(DOY),
+                        min = dmin,
+                        mean = dmean,
+                        max = dmax,
+                        amplitude = amplitude,
+                        time_min = time_min,
+                        time_max = time_max)
+
+  dmDaily$time_min[is.na(dmDaily$min)] <- NA
+  dmDaily$time_max[is.na(dmDaily$min)] <- NA
 
   return(dmDaily)
 }
