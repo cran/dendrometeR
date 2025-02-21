@@ -100,7 +100,11 @@ phase_def <- function(dm.gpf, resolution = dendro.resolution(dm.gpf), shapeSensi
 
   ### select minima/maxima points for every day depending on the resolution ###
   extrema <- function(dendro = parent.frame()$dm.gpf, minima = parent.frame()$minima, maxima = parent.frame()$maxima, shapeSensitivity = parent.frame()$shapeSensitivity) {
-    dayLen <- 86400/resolution
+    # print(resolution)
+    # print(class(resolution))
+    # print(is.numeric(resolution))
+#    stopifnot(!is.numeric(resolution),"debugstop")
+    dayLen <- 86400/as.numeric(resolution)
     dayNumb <- round(length(dendro)/dayLen)
     dayShape <- vector()
     minimaNew <- vector()
@@ -154,7 +158,7 @@ phase_def <- function(dm.gpf, resolution = dendro.resolution(dm.gpf), shapeSensi
 
   # offset original series depending on the shapeSensitivity variable and redo the extrema detection
   # TODO: Offset might be too big currently. Needs further testing
-  dayLen <- 86400/resolution
+  dayLen <- 86400/as.numeric(resolution)
   locExtOffset <- local_extrema(dm.gpf[floor(dayLen*shapeSensitivity):length(dm.gpf)])
   extValsOffset <- extrema(dm.gpf[floor(dayLen*shapeSensitivity):length(dm.gpf)], locExtOffset$minima, locExtOffset$maxima)
 

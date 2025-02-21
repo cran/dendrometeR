@@ -1,4 +1,4 @@
-2a265c1006df41b0f0cc5fc847c73f33 *DESCRIPTION
+d9e3861c7691a7d02762de88603e4650 *DESCRIPTION
 dcbeefeeeb905a3df784cc9ea07f4252 *NAMESPACE
 4a833cb2828aa4db04f9a9ebbd36975a *R/climate_seg.R
 4a4a821d186f93997abdb6fa615ae5a8 *R/cycle_stats.R
@@ -14,7 +14,7 @@ ac5f12ba63dba315963e4a7b1549b877 *R/dmED.R
 264ca6f88065f0c64c9dae0bbf17714a *R/fill_gaps.R
 368cde19ed6e6cdd32f94fa76daf418c *R/fill_plot.R
 d0f603137375706658d1320179c3f694 *R/is.dendro.R
-b6fa1a8776ce4bff44eaee73c1e1f8a5 *R/phase_def.R
+05bc3ccfd95b94088b4fea9bc2f245c4 *R/phase_def.R
 f6eb088d431633ebd4bdee2201669af9 *R/phase_plot.R
 9b7b7bbd19bafa75bef27ffbb993d3e8 *build/vignette.rds
 b8b6ae5f76445f7174dd49d25e79e82c *data/dmCD.rda
@@ -25,7 +25,7 @@ f9524089ef9be38c3680c8de9feea18a *data/dmHS.rda
 62b9ac064e9373effcb2995f4bf6f55f *data/dmHSraw.rda
 82b93d89e27e3249950a5d6dd99e5cac *data/envED.rda
 0545fdf9da7f0c76c6c4b0c7d0a70c47 *inst/Changelog
-411736bfe7e5a7f306df614bdec98ba7 *inst/doc/data_import.R
+308c227cecbb384ac70de33d11f10777 *inst/doc/data_import.R
 6a1924905aefadedd2039f8c46600c00 *inst/doc/data_import.Rmd
 30a60f50f85bae55f9190e425a6bbe27 *inst/doc/data_import.html
 53b38e0656997940bdc16a6b7a8ac447 *man/climate_seg.Rd
